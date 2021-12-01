@@ -1,13 +1,24 @@
-import { serve } from "https://deno.land/std@0.74.0/http/server.ts"; 
+import {Application, Router} from 'https://deno.land/x/oak@v6.3.1/mod.ts';
 
-const s = serve({ port: 8000 }); 
+const app = new Application();
+const router = new Router();
 
-console.log("http://localhost:8000/"); 
+console.log("http://localhost:8000/");
 
-for await (const req of s) { 
 
-  const text = await Deno.readTextFile("./frontend/index.html"); 
+router
+    .get('/', async (context) => {
+        context.response.body = await Deno.readTextFile("frontend/index.html");
+    })
+    .get('/kanban.css', async (context) => {
+        context.response.type = 'text/css';
+        context.response.body = await Deno.readTextFile("frontend/kanban.css");
+    })
+    .get('/script.js', async (context) => {
+      context.response.type = 'application/javascript';
+      context.response.body = await Deno.readTextFile("frontend/index.js");
+  })
 
-  req.respond({ body: text }); 
 
-} 
+app.use(router.routes());
+app.listen({port: 8000});
