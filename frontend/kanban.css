@@ -1,6 +1,6 @@
 .container {
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 75px 1fr 1fr 1fr;
+  grid-template-rows: 75px 1fr 1fr 1fr 1fr;
   display: grid;
 }
 
@@ -33,6 +33,15 @@
   grid-row: 2 / 4;
   border: 1px solid;
   min-height: 500px;
+}
+
+#createTasks {
+  grid-column: 1 / 3;
+  grid-row: 5;
+  min-height: 500px;
+  margin: 5px;
+  border: 1px solid;
+  border-radius: 12px;
 }
 
 #donetitle {
