@@ -8,12 +8,20 @@ async function delButton (items) {
     });
 }
 
-function nextButton (items) {
-    console.log("fn1")
+async function nextButton (item) {
+    await fetch("/api/next", {
+        method: "PUT",
+        body: JSON.stringify(item),
+        headers: {'Content-Type': 'application/json'}
+    });
 }
 
-function backButton (items) {
-    console.log("fn1")
+async function backButton (item) {
+    await fetch("/api/back", {
+        method: "PUT",
+        body: JSON.stringify(item),
+        headers: {'Content-Type': 'application/json'}
+    });
 }
 
 async function createTask(form) {

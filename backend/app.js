@@ -21,6 +21,32 @@ router
 .get("/api/list/progress", context => context.response.body = list.filter(function (el){return el.status == 2}))
 .get("/api/list/done", context => context.response.body = list.filter(function (el){return el.status == 3}))
 .get("/api/id", context => context.response.body = v4.generate())
+.put("/api/next", async context =>{
+    const item = await context.request.body({type: "json"}).value;
+    if(item.status < 3){
+        let index = list.map(function(e) { return e.id; }).indexOf(item.id);
+        if(index !== -1) {
+            list[index].status += 1;
+            context.response.status = 200;
+        }
+    }
+    else {
+        context.response.status = 400;
+    }
+})
+.put("/api/back", async context =>{
+    const item = await context.request.body({type: "json"}).value;
+    if(item.status > 1){
+        let index = list.map(function(e) { return e.id; }).indexOf(item.id);
+        if(index !== -1) {
+            list[index].status -= 1;
+            context.response.status = 200;
+        }
+    }
+    else {
+        context.response.status = 400;
+    }
+})
 .post("/api/list", async context => {
     const newItem = await context.request.body({type: "json"}).value;
     console.log("requestBody: ", newItem);
