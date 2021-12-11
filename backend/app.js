@@ -29,9 +29,16 @@ router
 })
 .delete("/api/delete", async context => {
     const delItem = await context.request.body({type: "json"}).value;
-    console.log("Deleting item: " + delItem);
-    delete list[delItem];
-    context.response.status = 200;
+    console.log("Deleting item: " + JSON.stringify(delItem));
+
+    let index = list.map(function(e) { return e.id; }).indexOf(delItem.id);
+    if(index !== -1) {
+        list.splice(index,1);
+        context.response.status = 200;
+    }
+    else {
+        context.response.status = 400;
+    }  
 });
 
 export const apiRoutes = router.routes();
