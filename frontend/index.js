@@ -16,7 +16,8 @@ function backButton (items) {
     console.log("fn1")
 }
 
-async function createTask() {
+async function createTask(form) {
+    console.log(form);
     await fetch("/api/list", {
         method: "POST",
         body: JSON.stringify(item),

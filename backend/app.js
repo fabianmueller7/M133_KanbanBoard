@@ -17,6 +17,9 @@ const router = new Router();
 
 router
 .get("/api/list", context => context.response.body = list)
+.get("/api/list/todo", context => context.response.body = list.filter(function (el){return el.status == 1}))
+.get("/api/list/progress", context => context.response.body = list.filter(function (el){return el.status == 2}))
+.get("/api/list/done", context => context.response.body = list.filter(function (el){return el.status == 3}))
 .get("/api/id", context => context.response.body = v4.generate())
 .post("/api/list", async context => {
     const newItem = await context.request.body({type: "json"}).value;

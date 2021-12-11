@@ -20,7 +20,7 @@
         </div>
         <div id="todo">
             <ul>
-                <template data-template-foreach="loadList" data-template-let="items">
+                <template data-template-foreach="loadListToDo" data-template-let="items">
                     <li>
                         <div class="card">
                             <div class="card-body">
@@ -50,7 +50,7 @@
         </div>
         <div id="progress">
             <ul>
-                <template data-template-foreach="loadList" data-template-let="items">
+                <template data-template-foreach="loadListProgress" data-template-let="items">
                     <li>
                         <div class="card">
                             <div class="card-body">
@@ -58,15 +58,16 @@
                               <p class="card-text">{{items.description}}</p>
                               <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
                               <script type="module">
+                                  import { init } from "./lib/templating.js";
                                     scope.querySelector(".backbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Back " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await backButton(items); init();;});
                                     scope.querySelector(".nextbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Next " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await nextButton(items); init();});
                                     scope.querySelector(".delbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("del " + items.title);});                                   
+                                        .addEventListener("click", async () => {
+                                                await delButton(items); init();});                                   
                               </script>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
         </div>
         <div id="done">
             <ul>
-                <template data-template-foreach="loadList" data-template-let="items">
+                <template data-template-foreach="loadListDone" data-template-let="items">
                     <li>
                         <div class="card">
                             <div class="card-body">
@@ -87,15 +88,16 @@
                               <p class="card-text">{{items.description}}</p>
                               <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
                               <script type="module">
+                                  import { init } from "./lib/templating.js";
                                     scope.querySelector(".backbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Back " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await backButton(items); init();;});
                                     scope.querySelector(".nextbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Next " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await nextButton(items); init();});
                                     scope.querySelector(".delbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("del " + items.title);});                                   
+                                        .addEventListener("click", async () => {
+                                                await delButton(items); init();});                                   
                               </script>
                             </div>
                         </div>
@@ -105,21 +107,49 @@
         </div>
         <div id="createTask">
             <h2>Create Task</h2>
-                <form action="/action_page.php">
+                <form id="form">
                     <label for="createTitle">Title:</label><br>
                     <input type="text" id="createtitle" name="createtitle" placeholder="title..."><br>
                     <label for="createContent">Content:</label><br>
-                    <input type="text" id="createContent" name="createContent" placeholder="content..."><br>
-                    <input type="radio" id="createToDo" name="createToDo" value="ToDo">
-                    <label for="createInProgress">ToDo</label><br>
-                    <input type="radio" id="createInProgress" name="createInProgress" value="In Progress">
-                    <label for="createDone">In Progress</label><br>
-                    <input type="radio" id="createDone" name="createDone" value="Done">
-                    <label for="vehicle3">Done</label><br>
+                    <textarea type="text" id="createContent" name="createContent" placeholder="content..."></textarea><br>
+                    <input type="radio" id="createstatus" name="createstatus" value="1" checked>
+                    <label for="createstatus">ToDo</label><br>
+                    <input type="radio" id="createstatus" name="createstatus" value="2">
+                    <label for="createstatus">In Progress</label><br>
+                    <input type="radio" id="createstatus" name="createstatus" value="3">
+                    <label for="createstatus">Done</label><br>
                     <input type="submit" value="Submit">
+                    <script type="module">
+                        import { init } from "./lib/templating.js";
+                        const form  = document.getElementById('form');
+                        form.addEventListener('submit', async (event) => {
+                            event.preventDefault();
+                            const title = document.getElementById('createtitle').value;
+                            const desc = document.getElementById("createContent").value;
+                            const itemId = await fetch("/api/id").then(r => r.text());
+                            const radioelements = document.getElementsByName('createstatus');
+                            let status = 1;
+                            for(let i = 0; radioelements.length > i; i++){
+                                if(radioelements[i].checked){
+                                    status = radioelements[i].value;
+                                }
+                            }
+                            const item = {
+                                id: itemId,
+                                title: title,
+                                description: `${desc}`,
+                                status: parseInt(status),
+                            };                         
+                            await fetch("/api/list", {
+                                method: "POST",
+                                body: JSON.stringify(item),
+                                headers: {'Content-Type': 'application/json'}
+                            });
+                            init();
+                        });
+                    </script>
                 </form>
         </div>
-
     </div>
 </body>
 </html>
