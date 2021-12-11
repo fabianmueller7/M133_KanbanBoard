@@ -25,16 +25,21 @@
                             <div class="card-body">
                               <h5 class="card-title">{{items.title}}</h5>
                               <p class="card-text">{{items.description}}</p>
-                              <button>Back</button><button>Next</button><button>Delete</button>
+                              <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
+                              <script type="module">
+                                    scope.querySelector(".backbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Back " + items.title);});
+                                    scope.querySelector(".nextbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Next " + items.title);});
+                                    scope.querySelector(".delbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("del " + items.title);});                                   
+                              </script>
                             </div>
                         </div>
                     </li>
-                    <script type="module">
-                        import {append} from ".lib.templating.js";
-                        scope.querySelector("button")
-                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
-                                                            console.log(items);});
-                    </script>
                 </template>
             </ul>
         </div>
@@ -49,16 +54,21 @@
                             <div class="card-body">
                               <h5 class="card-title">{{items.title}}</h5>
                               <p class="card-text">{{items.description}}</p>
-                              <button>Back</button><button>Next</button><button>Delete</button>
+                              <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
+                              <script type="module">
+                                    scope.querySelector(".backbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Back " + items.title);});
+                                    scope.querySelector(".nextbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Next " + items.title);});
+                                    scope.querySelector(".delbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("del " + items.title);});                                   
+                              </script>
                             </div>
                         </div>
                     </li>
-                    <script type="module">
-                        import {append} from ".lib.templating.js";
-                        scope.querySelector("button")
-                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
-                                                            console.log(items);});
-                    </script>
                 </template>
             </ul>
         </div>
@@ -73,16 +83,21 @@
                             <div class="card-body">
                               <h5 class="card-title">{{items.title}}</h5>
                               <p class="card-text">{{items.description}}</p>
-                              <button>Back</button><button>Next</button><button>Delete</button>
+                              <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
+                              <script type="module">
+                                    scope.querySelector(".backbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Back " + items.title);});
+                                    scope.querySelector(".nextbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("Next " + items.title);});
+                                    scope.querySelector(".delbutton")
+                                        .addEventListener("click", () => {
+                                                                        console.log("del " + items.title);});                                   
+                              </script>
                             </div>
                         </div>
                     </li>
-                    <script type="module">
-                        import {append} from ".lib.templating.js";
-                        scope.querySelector("button")
-                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
-                                                            console.log(items);});
-                    </script>
                 </template>
             </ul>
         </div>
