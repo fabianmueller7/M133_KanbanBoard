@@ -64,6 +64,7 @@ h2 {
   margin: 5px 5px 5px; 
   text-transform: uppercase;
   vertical-align:middle;
+  text-align: center;
 }
 
 .card-title {
@@ -112,6 +113,5 @@ button:active {
 ul {
   list-style-type: none;
 }
-
 
 
