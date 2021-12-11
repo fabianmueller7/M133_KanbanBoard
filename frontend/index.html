@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="app.js" type="module"></script>
+    <script src="index.js" type="text/javascript"></script>
     <script type="module" defer>
         import {init} from "./lib/templating.js";
         init();
@@ -27,15 +28,16 @@
                               <p class="card-text">{{items.description}}</p>
                               <button class="backbutton">Back</button><button class="nextbutton">Next</button><button class="delbutton">Delete</button>
                               <script type="module">
+                                  import { init } from "./lib/templating.js";
                                     scope.querySelector(".backbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Back " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await backButton(items); init();;});
                                     scope.querySelector(".nextbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("Next " + items.title);});
+                                        .addEventListener("click", async () => {
+                                                await nextButton(items); init();});
                                     scope.querySelector(".delbutton")
-                                        .addEventListener("click", () => {
-                                                                        console.log("del " + items.title);});                                   
+                                        .addEventListener("click", async () => {
+                                                await delButton(items); init();});                                   
                               </script>
                             </div>
                         </div>

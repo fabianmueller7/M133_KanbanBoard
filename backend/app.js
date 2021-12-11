@@ -26,6 +26,12 @@ router
         newItem
     ];
     context.response.status = 200;
+})
+.delete("/api/delete", async context => {
+    const delItem = await context.request.body({type: "json"}).value;
+    console.log("Deleting item: " + delItem);
+    delete list[delItem];
+    context.response.status = 200;
 });
 
 export const apiRoutes = router.routes();
