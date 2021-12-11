@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="app.js" type="module"></script>
+    <script type="module" defer>
+        import {init} from "./lib/templating.js";
+        init();
+    </script>
     <title>Kanban Board</title>
 </head>
 <body>
@@ -13,29 +18,89 @@
             <h2>ToDo</h1>
         </div>
         <div id="todo">
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <button>Back</button><button>Next</button><button>Delete</button>
-                </div>
-              </div>
+            <ul>
+                <template data-template-foreach="loadList" data-template-let="items">
+                    <li>
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">{{items.title}}</h5>
+                              <p class="card-text">{{items.description}}</p>
+                              <button>Back</button><button>Next</button><button>Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                    <script type="module">
+                        import {append} from ".lib.templating.js";
+                        scope.querySelector("button")
+                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
+                                                            console.log(items);});
+                    </script>
+                </template>
+            </ul>
         </div>
         <div id="progresstitle">
             <h2>Progress</h2>
         </div>
         <div id="progress">
-
+            <ul>
+                <template data-template-foreach="loadList" data-template-let="items">
+                    <li>
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">{{items.title}}</h5>
+                              <p class="card-text">{{items.description}}</p>
+                              <button>Back</button><button>Next</button><button>Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                    <script type="module">
+                        import {append} from ".lib.templating.js";
+                        scope.querySelector("button")
+                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
+                                                            console.log(items);});
+                    </script>
+                </template>
+            </ul>
         </div>
         <div id="donetitle">
             <h2>Done</h2>
         </div>
         <div id="done">
-
+            <ul>
+                <template data-template-foreach="loadList" data-template-let="items">
+                    <li>
+                        <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">{{items.title}}</h5>
+                              <p class="card-text">{{items.description}}</p>
+                              <button>Back</button><button>Next</button><button>Delete</button>
+                            </div>
+                        </div>
+                    </li>
+                    <script type="module">
+                        import {append} from ".lib.templating.js";
+                        scope.querySelector("button")
+                        .addEventListener("click", () => {append(document.querySelector("#form"), { items });
+                                                            console.log(items);});
+                    </script>
+                </template>
+            </ul>
         </div>
         <div id="createTask">
             <h2>Create Task</h2>
-            
+                <form action="/action_page.php">
+                    <label for="createTitle">Title:</label><br>
+                    <input type="text" id="createtitle" name="createtitle" placeholder="title..."><br>
+                    <label for="createContent">Content:</label><br>
+                    <input type="text" id="createContent" name="createContent" placeholder="content..."><br>
+                    <input type="radio" id="createToDo" name="createToDo" value="ToDo">
+                    <label for="createInProgress">ToDo</label><br>
+                    <input type="radio" id="createInProgress" name="createInProgress" value="In Progress">
+                    <label for="createDone">In Progress</label><br>
+                    <input type="radio" id="createDone" name="createDone" value="Done">
+                    <label for="vehicle3">Done</label><br>
+                    <input type="submit" value="Submit">
+                </form>
         </div>
 
     </div>
