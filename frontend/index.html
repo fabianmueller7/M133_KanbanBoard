@@ -191,11 +191,11 @@
                     <label for="createstatus">In Progress</label><br>
                     <input type="radio" id="createstatus" name="createstatus" value="3">
                     <label for="createstatus">Done</label><br>
-                    <input class="button" type="submit" value="Submit">
+                    <button class="button" id="subBtn">Submit</button>
                     <script type="module">
                         import { init } from "./lib/templating.js";
-                        const form  = document.getElementById('form');
-                        form.addEventListener('submit', async (event) => {
+                        const submitBtn  = document.getElementById('subBtn');
+                        submitBtn.addEventListener('click', async (event) => {
                             event.preventDefault();
                             const title = document.getElementById('createtitle').value;
                             const desc = document.getElementById("createContent").value;
