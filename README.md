@@ -1,2 +1,2 @@
 # M133_KanbanBoard
-deno run --allow-net --allow-read server.js
+Run command ```deno run --allow-net --allow-read server.js``` in terminal to run the app on port 8000.

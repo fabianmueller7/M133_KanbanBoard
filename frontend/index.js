@@ -1,3 +1,4 @@
+'use script';
 async function delButton (items) {
    console.log("Delete item: " + items)
 
