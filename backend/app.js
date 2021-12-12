@@ -68,6 +68,42 @@ router
     else {
         context.response.status = 400;
     }  
+})
+.put("/api/update/description", async context => {
+        const updateItem = await context.request.body({type: "json"}).value;
+
+        console.log("updating description of object: " + JSON.stringify(updateItem))    
+        
+        let index = list.map(function(e) { return e.id; }).indexOf(updateItem.id);
+
+        
+        if(index !== -1) {
+            list[index].description = updateItem.description
+            context.response.status = 200;
+        }
+        else {
+            context.response.status = 400;
+        } 
+        
+    
+})
+.put("/api/update/title", async context => {
+    const updateItem = await context.request.body({type: "json"}).value;
+
+    console.log("updating title of object: " + JSON.stringify(updateItem))    
+    
+    let index = list.map(function(e) { return e.id; }).indexOf(updateItem.id);
+
+    
+    if(index !== -1) {
+        list[index].title = updateItem.title
+        context.response.status = 200;
+    }
+    else {
+        context.response.status = 400;
+    } 
+    
+
 });
 
 export const apiRoutes = router.routes();
