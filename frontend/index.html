@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="./index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="'https://fonts.googleapis.com/css?family=Muli:300,400,700,900'" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,170 +18,180 @@
 </head>
 <body>
     <div class="container">
-        <div id="todotitle">
-            <h2>ToDo</h1>
-        </div>
-        <div id="todo">
-            <ul>
-                <template data-template-foreach="loadListToDo" data-template-let="items">
-                    <li>
-                        <div class="card">
-                            <div class="card-body">
-                              <input type="text" class="card-title" value="{{items.title}}"></h5>
-                              <input type="text" class="card-text" value="{{items.description}}" ></input>
-                              <br>
-                              <button class="backbutton">Back</button>
-                              <button class="nextbutton">Next</button>
-                              <button class="delbutton">Delete</button>
-                              <script type="module">
-                                  import { init } from "./lib/templating.js";
-                                  
+        <div class="sections-container">
 
-                                    scope.querySelector(".backbutton")
-                                        .addEventListener("click", async () => {
-                                                await backButton(items); init();;
-                                            });
-                                    scope.querySelector(".card-title")
-                                        .addEventListener("input", async (elem) => {
-                                            
-                                            await updateTitle(items, scope.querySelector(".card-title").value);
-                                        });
+        
+            <div class="section">
+                <div class="tile">
+                    <h2>ToDo</h1>
+                </div>
+                <div id="todo">
+                    <ul>
+                        <template data-template-foreach="loadListToDo" data-template-let="items">
+                            <li>
+                                <div class="card">
+                                    <div class="card-body">
+                                    <input type="text" class="card-title" value="{{items.title}}"></h5>
+                                    <input type="text" class="card-text" value="{{items.description}}" ></input>
+                                    <br>
+                                    <button class="backbutton">Back</button>
+                                    <button class="nextbutton">Next</button>
+                                    <button class="delbutton">Delete</button>
+                                    <script type="module">
+                                        import { init } from "./lib/templating.js";
+                                        
 
-                                    scope.querySelector(".card-text")
-                                        .addEventListener("input", async (elem) => {
-                                            
-                                            await updateDescription(items, scope.querySelector(".card-text").value);
-                                        });
-                                    
-                                    scope.querySelector(".nextbutton")
-                                        .addEventListener("click", async () => {
-                                                await nextButton(items); init();
-                                            });
-                                    scope.querySelector(".delbutton")
-                                        .addEventListener("click", async () => {
-                                                await delButton(items); init();
-                                            });                                 
-                              </script>
-                            </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-        </div>
-        <div id="progresstitle">
-            <h2>Progress</h2>
-        </div>
-        <div id="progress">
-            <ul>
-                <template data-template-foreach="loadListProgress" data-template-let="items">
-                    <li>
-                        <div class="card">
-                            <div class="card-body">
-                              <input type="text" class="card-title" value="{{items.title}}"></h5>
-                              <input type="text" class="card-text" value="{{items.description}}" ></input>
-                              <br>
-                              <button class="backbutton">Back</button>
-                              <button class="nextbutton">Next</button>
-                              <button class="delbutton">Delete</button>
-                              <script type="module">
-                                  import { init } from "./lib/templating.js";
-                                  
+                                            scope.querySelector(".backbutton")
+                                                .addEventListener("click", async () => {
+                                                        await backButton(items); init();;
+                                                    });
+                                            scope.querySelector(".card-title")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateTitle(items, scope.querySelector(".card-title").value);
+                                                });
 
-                                    scope.querySelector(".backbutton")
-                                        .addEventListener("click", async () => {
-                                                await backButton(items); init();;
-                                            });
-                                    scope.querySelector(".card-title")
-                                        .addEventListener("input", async (elem) => {
+                                            scope.querySelector(".card-text")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateDescription(items, scope.querySelector(".card-text").value);
+                                                });
                                             
-                                            await updateTitle(items, scope.querySelector(".card-title").value);
-                                        });
+                                            scope.querySelector(".nextbutton")
+                                                .addEventListener("click", async () => {
+                                                        await nextButton(items); init();
+                                                    });
+                                            scope.querySelector(".delbutton")
+                                                .addEventListener("click", async () => {
+                                                        await delButton(items); init();
+                                                    });                                 
+                                    </script>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <div class="tile">
+                    <h2>Progress</h2>
+                </div>
+                <div id="progress">
+                    <ul>
+                        <template data-template-foreach="loadListProgress" data-template-let="items">
+                            <li>
+                                <div class="card">
+                                    <div class="card-body">
+                                    <input type="text" class="card-title" value="{{items.title}}"></h5>
+                                    <input type="text" class="card-text" value="{{items.description}}" ></input>
+                                    <br>
+                                    <button class="backbutton">Back</button>
+                                    <button class="nextbutton">Next</button>
+                                    <button class="delbutton">Delete</button>
+                                    <script type="module">
+                                        import { init } from "./lib/templating.js";
+                                        
 
-                                    scope.querySelector(".card-text")
-                                        .addEventListener("input", async (elem) => {
-                                            
-                                            await updateDescription(items, scope.querySelector(".card-text").value);
-                                        });
-                                    
-                                    scope.querySelector(".nextbutton")
-                                        .addEventListener("click", async () => {
-                                                await nextButton(items); init();
-                                            });
-                                    scope.querySelector(".delbutton")
-                                        .addEventListener("click", async () => {
-                                                await delButton(items); init();
-                                            });                                 
-                              </script>
-                            </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
-        </div>
-        <div id="donetitle">
-            <h2>Done</h2>
-        </div>
-        <div id="done">
-            <ul>
-                <template data-template-foreach="loadListDone" data-template-let="items">
-                    <li>
-                        <div class="card">
-                            <div class="card-body">
-                              <input type="text" class="card-title" value="{{items.title}}"></h5>
-                              <input type="text" class="card-text" value="{{items.description}}" ></input>
-                              <br>
-                              <button class="backbutton">Back</button>
-                              <button class="nextbutton">Next</button>
-                              <button class="delbutton">Delete</button>
-                              <script type="module">
-                                  import { init } from "./lib/templating.js";
-                                  
+                                            scope.querySelector(".backbutton")
+                                                .addEventListener("click", async () => {
+                                                        await backButton(items); init();;
+                                                    });
+                                            scope.querySelector(".card-title")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateTitle(items, scope.querySelector(".card-title").value);
+                                                });
 
-                                    scope.querySelector(".backbutton")
-                                        .addEventListener("click", async () => {
-                                                await backButton(items); init();;
-                                            });
-                                    scope.querySelector(".card-title")
-                                        .addEventListener("input", async (elem) => {
+                                            scope.querySelector(".card-text")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateDescription(items, scope.querySelector(".card-text").value);
+                                                });
                                             
-                                            await updateTitle(items, scope.querySelector(".card-title").value);
-                                        });
+                                            scope.querySelector(".nextbutton")
+                                                .addEventListener("click", async () => {
+                                                        await nextButton(items); init();
+                                                    });
+                                            scope.querySelector(".delbutton")
+                                                .addEventListener("click", async () => {
+                                                        await delButton(items); init();
+                                                    });                                 
+                                    </script>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <div class="tile">
+                    <h2>Done</h2>
+                </div>
+                <div id="done">
+                    <ul>
+                        <template data-template-foreach="loadListDone" data-template-let="items">
+                            <li>
+                                <div class="card">
+                                    <div class="card-body">
+                                    <input type="text" class="card-title" value="{{items.title}}"></h5>
+                                    <input type="text" class="card-text" value="{{items.description}}" ></input>
+                                    <br>
+                                    <button class="backbutton">Back</button>
+                                    <button class="nextbutton">Next</button>
+                                    <button class="delbutton">Delete</button>
+                                    <script type="module">
+                                        import { init } from "./lib/templating.js";
+                                        
 
-                                    scope.querySelector(".card-text")
-                                        .addEventListener("input", async (elem) => {
+                                            scope.querySelector(".backbutton")
+                                                .addEventListener("click", async () => {
+                                                        await backButton(items); init();;
+                                                    });
+                                            scope.querySelector(".card-title")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateTitle(items, scope.querySelector(".card-title").value);
+                                                });
+
+                                            scope.querySelector(".card-text")
+                                                .addEventListener("input", async (elem) => {
+                                                    
+                                                    await updateDescription(items, scope.querySelector(".card-text").value);
+                                                });
                                             
-                                            await updateDescription(items, scope.querySelector(".card-text").value);
-                                        });
-                                    
-                                    scope.querySelector(".nextbutton")
-                                        .addEventListener("click", async () => {
-                                                await nextButton(items); init();
-                                            });
-                                    scope.querySelector(".delbutton")
-                                        .addEventListener("click", async () => {
-                                                await delButton(items); init();
-                                            });                                 
-                              </script>
-                            </div>
-                        </div>
-                    </li>
-                </template>
-            </ul>
+                                            scope.querySelector(".nextbutton")
+                                                .addEventListener("click", async () => {
+                                                        await nextButton(items); init();
+                                                    });
+                                            scope.querySelector(".delbutton")
+                                                .addEventListener("click", async () => {
+                                                        await delButton(items); init();
+                                                    });                                 
+                                    </script>
+                                    </div>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div id="createTask">
-            <h2>Create Task</h2>
+                <h2>Create Task</h2>
                 <form id="form">
-                    <label for="createTitle">Title:</label><br>
-                    <input type="text" id="createtitle" name="createtitle" placeholder="title..."><br>
-                    <label for="createContent">Content:</label><br>
-                    <textarea type="text" id="createContent" name="createContent" placeholder="content..."></textarea><br>
+                    <label for="createTitle">Title</label><br>
+                    <input class="title-textbox" type="text" id="createtitle" name="createtitle" placeholder="title..."><br>
+                    <label for="createContent">Content</label><br>
+                    <textarea class="content-textarea" type="text" id="createContent" name="createContent" placeholder="content..."></textarea><br>
                     <input type="radio" id="createstatus" name="createstatus" value="1" checked>
                     <label for="createstatus">ToDo</label><br>
                     <input type="radio" id="createstatus" name="createstatus" value="2">
                     <label for="createstatus">In Progress</label><br>
                     <input type="radio" id="createstatus" name="createstatus" value="3">
                     <label for="createstatus">Done</label><br>
-                    <input type="submit" value="Submit">
+                    <input class="button" type="submit" value="Submit">
                     <script type="module">
                         import { init } from "./lib/templating.js";
                         const form  = document.getElementById('form');
